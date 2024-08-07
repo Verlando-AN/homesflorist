@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #f6f5f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: -20px 0 50px;
+}
+
+.container {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+  width: 768px; /* Lebar yang diperbesar sesuai keinginan Anda */
+  max-width: 100%;
+  min-height: 480px;
+}
+
+.forms-container {
+  display: flex;
+  flex-direction: row; /* Mengatur form dan logo sejajar */
+}
+
+.signin-signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Pusatkan form */
+  width: 100%;
+  z-index: 5;
+  transition: 1s 0.7s ease-in-out;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem;
+  transition: all 0.2s 0.7s;
+  overflow: hidden;
+  width: 100%; /* Lebar form 100% dari parentnya */
+}
+
+form.sign-up-form {
+  opacity: 0;
+  z-index: 1;
+}
+
+form.sign-in-form {
+  z-index: 2;
+}
+
+.title {
+  font-size: 2rem;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.input-field {
+  max-width: 300px;
+  width: 100%;
+  background-color: #f0f0f0;
+  margin: 10px 0;
+  height: 55px; /* Tinggi form diperbesar */
+  border-radius: 45px;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  padding: 0 0.4rem;
+  position: relative;
+}
+
+.input-field i {
+  text-align: center;
+  line-height: 55px; /* Sesuaikan tinggi ikon */
+  color: #acacac;
+  transition: 0.5s;
+  font-size: 1.5rem; /* Ukuran ikon diperbesar */
+}
+
+.input-field input {
+  background: none;
+  outline: none;
+  border: none;
+  line-height: 1;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333;
+}
+
+.input-field::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #7101ff);
+  transition: 0.5s;
+}
+
+.input-field:hover {
+  background-color: #e8e8e8;
+}
+
+.input-field:hover i {
+  color: #7101ff;
+}
+
+.input-field:focus::before {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #7101ff);
+}
+
+.input-field:focus i {
+  color: #7101ff;
+}
+
+.btn {
+  width: 200px; /* Lebar tombol diperbesar */
+  background: linear-gradient(90deg, #2a06f7, #2a06f7);
+  border: none;
+  outline: none;
+  height: 55px; /* Tinggi tombol diperbesar */
+  border-radius: 45px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 10px;
+}
+
+.panel.left-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #2a06f7;
+}
+
+
+.panel .logo {
+  color: #fcfdfd;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
