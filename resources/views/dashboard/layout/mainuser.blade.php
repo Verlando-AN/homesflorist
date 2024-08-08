@@ -13,7 +13,7 @@
         color: #fff; 
       }
       .navbar-nav {
-        margin-left: 80%; 
+        margin-left: 75%; 
       }
       .nav-link {
         color: #fff;
@@ -21,8 +21,15 @@
       .nav-link:hover {
         color: #ddd; 
       }
-    
-      
+    .card-height {
+        height: 100%;
+    }
+
+    .card-body-scroll {
+        max-height: 400px;
+        overflow-y: auto; 
+    }
+
     </style>
   </head>
 

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Disease;
 use App\Models\Symptom;
 use App\Models\Rule;
+use App\Models\DiagnosisHistory;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User; 
 
 class DiagnosaController extends Controller
 {
@@ -46,7 +49,18 @@ class DiagnosaController extends Controller
 
             $results[] = ['disease' => $disease, 'cf' => $cfPercentage];
         }
+        DiagnosisHistory::create([
+            'user_id' => Auth::id(), 
+            'diagnosis_results' => json_encode($results),
+        ]);
 
         return view('dashboard.hasil', compact('results'));
     }
+    public function history()
+{
+    $histories = DiagnosisHistory::where('user_id', Auth::id())->get(); 
+    return view('dashboard.riwayat', compact('histories'));
+}
+
+    
 }

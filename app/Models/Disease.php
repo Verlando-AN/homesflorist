@@ -15,4 +15,8 @@ class Disease extends Model
     {
         return $this->hasMany(Rule::class);
     }
+    public function symptoms()
+    {
+        return $this->belongsToMany(Symptom::class);
+    }
 }
