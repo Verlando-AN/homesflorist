@@ -52,16 +52,15 @@ class DashboardController extends Controller
 
         $user->save();
 
-        return redirect()->back()->with('success', 'Profile updated successfully!');
+        return redirect()->back()->with('success', 'Profil Berhasil di Update!');
     }
 
     public function show($id)
     {
         $history = DiagnosisHistory::findOrFail($id);
         $diseases = Disease::all();
-        
         $results = $this->getDiagnosisResults($history);
-
+    
         return view('dashboard.driwayat', [
             'history' => $history,
             'diseases' => $diseases,
@@ -69,12 +68,39 @@ class DashboardController extends Controller
             'title' => 'Diagnosis Details',
         ]);
     }
+    
 
     private function getDiagnosisResults($history)
     {
-        return [
-            ['disease' => Disease::find(1), 'cf' => 85],
-            ['disease' => Disease::find(2), 'cf' => 75],
-        ];
+        $diagnosisResults = json_decode($history->diagnosis_results, true);
+        $results = [];
+    
+        foreach ($diagnosisResults as $result) {
+            if (isset($result['disease']['id'])) {
+                $disease = Disease::find($result['disease']['id']);
+   
+                if ($disease) {
+                    $results[] = [
+                        'disease' => $disease,
+                        'cf' => $result['cf']
+                    ];
+                }
+            }
+        }
+    
+        return $results;
+    }
+    public function destroyUser($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->back()->with('success', 'Akun pengguna telah dihapus.');
+    }
+    public function home()
+    {
+        return view('dashboard.home', [
+            'title' => 'home'
+        ]);
     }
 }

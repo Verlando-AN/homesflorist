@@ -4,7 +4,9 @@
 
 <div class="container mt-4">
     <div class="row">
-        <!-- Account Settings Card -->
+        @if (session()->has('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
         <div class="col-md-6">
             <div class="card mb-3 card-height">
                 <div class="card-header bg-primary text-white">
@@ -22,9 +24,7 @@
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            @if (session()->has('success'))
-                                <div class="alert alert-success">{{ session('success') }}</div>
-                            @endif
+                          
 
                             <form method="post" action="{{ route('updateProfile') }}" enctype="multipart/form-data">
                                 @csrf
@@ -90,44 +90,52 @@
                 </div>
             </div>
         </div>
+        
 
-        <!-- User List Card for Admins -->
+      
         @if(auth()->user()->is_admin)
-        <div class="col-md-12 mt-4">
-            <div class="card mb-3 card-height">
-                <div class="card-header bg-primary text-white ">
-                    <h5 class="mb-0 ">Daftar Pengguna</h5>
-                </div>
-                <div class="card-body card-body-scroll">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Tanggal Dibuat</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($users as $user)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $user->username }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->created_at->format('d-m-Y H:i') }}</td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="2">Tidak ada riwayat diagnosis</td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                   
-                </div>
-            </div>
+<div class="col-md-12 mt-4">
+    <div class="card mb-3 card-height">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Daftar Pengguna</h5>
         </div>
-        @endif
+        <div class="card-body card-body-scroll">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Tanggal Dibuat</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($users as $user)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $user->username }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->created_at->format('d-m-Y H:i') }}</td>
+                        <td>
+                            <form action="{{ route('account.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus akun ini?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="5">Tidak ada pengguna yang tersedia</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@endif
 
     </div>
 </div>

@@ -13,7 +13,8 @@
         color: #fff; 
       }
       .navbar-nav {
-        margin-left: 75%; 
+        position: relative;
+        left: 67%;
       }
       .nav-link {
         color: #fff;

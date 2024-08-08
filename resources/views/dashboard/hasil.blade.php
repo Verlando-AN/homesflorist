@@ -36,6 +36,7 @@
       @endif
 
       <div class="text-center mt-3">
+        <button onclick="window.print()" class="btn btn-success">Cetak</button>
         <a href="{{ url('/diagnosa') }}" class="btn btn-secondary">Kembali</a>
       </div>
     </div>

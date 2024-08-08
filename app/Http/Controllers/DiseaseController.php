@@ -55,12 +55,11 @@ class DiseaseController extends Controller
     
             $disease->symptoms()->sync($request->input('symptoms'));
     
-            // Simpan aturan berdasarkan kode gejala yang dipilih
-            $ruleCode = 'R' . str_pad($disease->id, 2, '0', STR_PAD_LEFT); // Buat kode aturan
+            $ruleCode = 'R' . str_pad($disease->id, 2, '0', STR_PAD_LEFT); 
     
             Rule::create([
                 'code' => $ruleCode,
-                'rule' => $symptomCodesString, // Gabungkan kode gejala
+                'rule' => $symptomCodesString, 
                 'disease_id' => $disease->id,
             ]);
         }

@@ -59,7 +59,7 @@ class DiagnosaController extends Controller
     public function history()
 {
     $histories = DiagnosisHistory::where('user_id', Auth::id())->get(); 
-    return view('dashboard.riwayat', compact('histories'));
+    return view('dashboard.driwayat', compact('histories'));
 }
 
     

@@ -2,8 +2,8 @@
 
 @section('containerr')
 <div class="container mt-4">
-    <h1>Daftar Penyakit</h1>
-    <a href="{{ route('diseases.create') }}" class="btn btn-primary mb-3">Tambah Penyakit</a>
+    <h1>Daftar Gejala</h1>
+    <a href="{{ route('symptoms.create') }}" class="btn btn-primary mb-3">Tambah Gejala</a>
     <table class="table">
         <thead>
             <tr>
@@ -13,13 +13,13 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($diseases as $disease)
+            @foreach ($symptoms as $symptom)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $disease->name }}</td>
+                <td>{{ $symptom->name }}</td>
                 <td>
-                    <a href="{{ route('diseases.edit', $disease) }}" class="btn btn-warning">Edit</a>
-                    <form action="{{ route('diseases.destroy', $disease) }}" method="POST" style="display:inline;">
+                    <a href="{{ route('symptoms.edit', $symptom) }}" class="btn btn-warning">Edit</a>
+                    <form action="{{ route('symptoms.destroy', $symptom) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Hapus</button>
