@@ -3,6 +3,17 @@
 @section('containerr')
 <div class="container mt-4">
     <h1>Edit Penyakit</h1>
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+ @endif
+
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
     <form action="{{ route('diseases.update', $disease->id) }}" method="POST">
         @csrf
         @method('PUT')

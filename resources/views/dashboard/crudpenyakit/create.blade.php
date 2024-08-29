@@ -3,6 +3,19 @@
 @section('containerr')
 <div class="container mt-4">
     <h1>Tambah Penyakit</h1>
+
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <form action="{{ route('diseases.store') }}" method="POST">
         @csrf
         <div class="mb-3">
@@ -19,6 +32,7 @@
                 <thead>
                     <tr>
                         <th>Pilih</th>
+                        <th>Kode Gejala</th>
                         <th>Nama Gejala</th>
                     </tr>
                 </thead>

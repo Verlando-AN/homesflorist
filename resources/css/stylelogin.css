@@ -20,20 +20,20 @@ body {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
   overflow: hidden;
-  width: 768px; /* Lebar yang diperbesar sesuai keinginan Anda */
+  width: 768px; 
   max-width: 100%;
   min-height: 480px;
 }
 
 .forms-container {
   display: flex;
-  flex-direction: row; /* Mengatur form dan logo sejajar */
+  flex-direction: row; 
 }
 
 .signin-signup {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Pusatkan form */
+  align-items: center; 
   width: 100%;
   z-index: 5;
   transition: 1s 0.7s ease-in-out;
@@ -47,7 +47,7 @@ form {
   padding: 2rem;
   transition: all 0.2s 0.7s;
   overflow: hidden;
-  width: 100%; /* Lebar form 100% dari parentnya */
+  width: 100%; 
 }
 
 form.sign-up-form {
@@ -70,7 +70,7 @@ form.sign-in-form {
   width: 100%;
   background-color: #f0f0f0;
   margin: 10px 0;
-  height: 55px; /* Tinggi form diperbesar */
+  height: 55px; 
   border-radius: 45px;
   display: grid;
   grid-template-columns: 15% 85%;
@@ -80,10 +80,10 @@ form.sign-in-form {
 
 .input-field i {
   text-align: center;
-  line-height: 55px; /* Sesuaikan tinggi ikon */
+  line-height: 55px; 
   color: #acacac;
   transition: 0.5s;
-  font-size: 1.5rem; /* Ukuran ikon diperbesar */
+  font-size: 1.5rem; 
 }
 
 .input-field input {
@@ -125,11 +125,11 @@ form.sign-in-form {
 }
 
 .btn {
-  width: 200px; /* Lebar tombol diperbesar */
+  width: 200px; 
   background: linear-gradient(90deg, #2a06f7, #2a06f7);
   border: none;
   outline: none;
-  height: 55px; /* Tinggi tombol diperbesar */
+  height: 55px; 
   border-radius: 45px;
   color: #fff;
   text-transform: uppercase;
@@ -151,3 +151,4 @@ form.sign-in-form {
   font-weight: 800;
   margin-bottom: 20px;
 }
+

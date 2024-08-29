@@ -3,6 +3,17 @@
 @section('containerr')
 <div class="container mt-4">
     <h1>Daftar Gejala</h1>
+            @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
     <a href="{{ route('symptoms.create') }}" class="btn btn-primary mb-3">Tambah Gejala</a>
     <table class="table">
         <thead>

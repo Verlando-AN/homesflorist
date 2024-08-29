@@ -13,7 +13,7 @@ class DiseaseController extends Controller
     public function index()
     {
         if (!Auth::check() || !Auth::user()->is_admin) {
-            return redirect('/')->with('error', 'You do not have access to this section.');
+            return redirect('/')->with('error', 'Anda tidak memiliki akses ke bagian ini.');
         }
         
         $diseases = Disease::with('symptoms')->get();
@@ -23,7 +23,7 @@ class DiseaseController extends Controller
     public function create()
     {
         if (!Auth::check() || !Auth::user()->is_admin) {
-            return redirect('/')->with('error', 'You do not have access to this section.');
+            return redirect('/')->with('error', 'Anda tidak memiliki akses ke bagian ini.');
         }
 
         $symptoms = Symptom::all();
@@ -33,8 +33,9 @@ class DiseaseController extends Controller
     public function edit(Disease $disease)
     {
         if (!Auth::check() || !Auth::user()->is_admin) {
-            return redirect('/')->with('error', 'You do not have access to this section.');
+            return redirect('/')->with('error', 'Anda tidak memiliki akses ke bagian ini.');
         }
+
         $symptoms = Symptom::all();
         return view('dashboard.crudpenyakit.edit', compact('disease', 'symptoms'));
     }
@@ -46,65 +47,65 @@ class DiseaseController extends Controller
             'code' => 'required|string|max:10|unique:diseases',
             'symptoms' => 'required|array',
         ]);
-    
+
         $disease = Disease::create($request->only('name', 'code'));
-    
+
         if ($request->has('symptoms')) {
             $symptomCodes = Symptom::whereIn('id', $request->input('symptoms'))->pluck('code');
             $symptomCodesString = $symptomCodes->implode(',');
-    
+
             $disease->symptoms()->sync($request->input('symptoms'));
-    
+
             $ruleCode = 'R' . str_pad($disease->id, 2, '0', STR_PAD_LEFT); 
-    
-            Rule::create([
-                'code' => $ruleCode,
-                'rule' => $symptomCodesString, 
-                'disease_id' => $disease->id,
-            ]);
-        }
-    
-        return redirect()->route('diseases.index')->with('success', 'Penyakit dan aturan berhasil dibuat.');
-    }
-    
-    public function update(Request $request, Disease $disease)
-{
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'code' => 'required|string|max:10|unique:diseases,code,' . $disease->id,
-        'symptoms' => 'array',
-    ]);
 
-    $disease->update($request->only('name', 'code'));
-
-    if ($request->has('symptoms')) {
-        $symptomCodes = Symptom::whereIn('id', $request->input('symptoms'))->pluck('code');
-        $symptomCodesString = $symptomCodes->implode(',');
-
-        $disease->symptoms()->sync($request->input('symptoms'));
-
-        $rule = Rule::where('disease_id', $disease->id)->first();
-
-        if ($rule) {
-            $rule->update([
-                'rule' => $symptomCodesString, 
-            ]);
-        } else {
-            $ruleCode = 'R' . str_pad($disease->id, 2, '0', STR_PAD_LEFT);
             Rule::create([
                 'code' => $ruleCode,
                 'rule' => $symptomCodesString,
                 'disease_id' => $disease->id,
             ]);
         }
+
+        return redirect()->route('diseases.index')->with('success', 'Penyakit dan aturan berhasil dibuat.');
     }
 
-    return redirect()->route('diseases.index')->with('success', 'Penyakit dan aturan berhasil diperbarui.');
-}
+    public function update(Request $request, Disease $disease)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'code' => 'required|string|max:10|unique:diseases,code,' . $disease->id,
+            'symptoms' => 'array',
+        ]);
+
+        $disease->update($request->only('name', 'code'));
+
+        if ($request->has('symptoms')) {
+            $symptomCodes = Symptom::whereIn('id', $request->input('symptoms'))->pluck('code');
+            $symptomCodesString = $symptomCodes->implode(',');
+
+            $disease->symptoms()->sync($request->input('symptoms'));
+
+            $rule = Rule::where('disease_id', $disease->id)->first();
+
+            if ($rule) {
+                $rule->update([
+                    'rule' => $symptomCodesString,
+                ]);
+            } else {
+                $ruleCode = 'R' . str_pad($disease->id, 2, '0', STR_PAD_LEFT);
+                Rule::create([
+                    'code' => $ruleCode,
+                    'rule' => $symptomCodesString,
+                    'disease_id' => $disease->id,
+                ]);
+            }
+        }
+
+        return redirect()->route('diseases.index')->with('success', 'Penyakit dan aturan berhasil diperbarui.');
+    }
 
     public function destroy(Disease $disease)
     {
         $disease->delete();
-        return redirect()->route('diseases.index')->with('success', 'Disease deleted successfully.');
+        return redirect()->route('diseases.index')->with('success', 'Penyakit berhasil dihapus.');
     }
 }

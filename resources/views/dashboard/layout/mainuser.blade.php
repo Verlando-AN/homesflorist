@@ -38,11 +38,20 @@
    
 @include('dashboard.layout.navuser')
 
-
 @yield('containerr')
              
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+  document.getElementById('logout-button').addEventListener('click', function(event) {
+      event.preventDefault(); 
+
+      if (confirm('Apakah Anda ingin logout?')) {
+          document.getElementById('logout-form').submit();
+      }
+  });
+</script>
+
 </body>
 </html>

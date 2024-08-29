@@ -1,12 +1,20 @@
 @extends('dashboard.layout.mainuser')
 
 @section('containerr')
+@if (session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
 
+@if (session('error'))
+<div class="alert alert-danger">
+    {{ session('error') }}
+</div>
+@endif
 <div class="container mt-4">
     <div class="row">
-        @if (session()->has('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
+       
         <div class="col-md-6">
             <div class="card mb-3 card-height">
                 <div class="card-header bg-primary text-white">

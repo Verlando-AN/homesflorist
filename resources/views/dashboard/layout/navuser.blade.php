@@ -23,7 +23,6 @@
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{{ url('symptoms') }}">Gejala</a></li>
             <li><hr class="dropdown-divider"></li>
-            
           </ul>
         </li>
         @endif
@@ -35,16 +34,32 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ url('index') }}">Settings</a></li>
             <li><hr class="dropdown-divider"></li>
-
-            <li>
-              <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button type="submit" class="dropdown-item">Logout</button>
-              </form>
-            </li>
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>
           </ul>
         </li>
       </ul>
     </div>
   </div>
 </nav>
+
+
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="logoutModalLabel">Konfirmasi Logout</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Apakah Anda yakin ingin logout?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+          @csrf
+          <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -35,10 +35,20 @@ class DashboardController extends Controller
         ]);
 
         $user = Auth::user();
-        $user->username = $request->input('username');
-        $user->email = $request->input('email');
-        
+        $changes = [];
+
+        if ($user->username !== $request->input('username')) {
+            $changes[] = 'Username';
+            $user->username = $request->input('username');
+        }
+
+        if ($user->email !== $request->input('email')) {
+            $changes[] = 'Email';
+            $user->email = $request->input('email');
+        }
+
         if ($request->filled('password')) {
+            $changes[] = 'Password';
             $user->password = Hash::make($request->input('password'));
         }
 
@@ -48,11 +58,17 @@ class DashboardController extends Controller
             }
             $photoPath = $request->file('photo')->store('photos', 'public');
             $user->photo = $photoPath;
+            $changes[] = 'Foto Profil';
         }
 
         $user->save();
 
-        return redirect()->back()->with('success', 'Profil Berhasil di Update!');
+        $message = 'Profil Berhasil di Update!';
+        if (!empty($changes)) {
+            $message = implode(', ', $changes) . ' telah berhasil diperbarui!';
+        }
+
+        return redirect()->back()->with('success', $message);
     }
 
     public function show($id)
@@ -68,7 +84,6 @@ class DashboardController extends Controller
             'title' => 'Diagnosis Details',
         ]);
     }
-    
 
     private function getDiagnosisResults($history)
     {
@@ -90,6 +105,7 @@ class DashboardController extends Controller
     
         return $results;
     }
+
     public function destroyUser($id)
     {
         $user = User::findOrFail($id);
@@ -97,6 +113,7 @@ class DashboardController extends Controller
 
         return redirect()->back()->with('success', 'Akun pengguna telah dihapus.');
     }
+
     public function home()
     {
         return view('dashboard.home', [
