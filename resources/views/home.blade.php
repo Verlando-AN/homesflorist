@@ -1,6 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
+
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
 <div class="container mt-5">
     <div class="text-center mb-5 position-relative">
         <div class="bg-light rounded shadow-lg py-4 px-3">
