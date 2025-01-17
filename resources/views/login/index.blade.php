@@ -96,7 +96,6 @@
           @error('password')
             <span class="error">{{ $message }}</span>
           @enderror
-          <a href="/register" class="nav-item nav-link">Register</a>
           <input type="submit" value="Login" class="btn solid" />
         </form>
         
@@ -106,7 +105,7 @@
     <div class="panels-container">
       <div class="panel left-panel">
         <div class="logo">
-          Diagnosa Kambing
+         HOME'S FLORIST
         </div>
       </div>
     </div>
