@@ -76,34 +76,5 @@
     </div>
 </div>
 
-<style>
-    .product-image {
-        max-height: 400px;
-        object-fit: cover;
-        border-radius: 10px;
-    }
-    .price {
-        font-size: 1.8rem;
-        font-weight: bold;
-        color: #28a745;
-    }
-    .btn-success {
-        background-color: #28a745;
-        border: none;
-        transition: background-color 0.3s ease;
-    }
-    .btn-success:hover {
-        background-color: #218838;
-    }
-    .btn-outline-secondary {
-        transition: all 0.3s ease;
-    }
-    .btn-outline-secondary:hover {
-        background-color: #e9ecef;
-        color: #000;
-    }
-    hr {
-        border-top: 1px solid #e9ecef;
-    }
-</style>
+
 @endsection
