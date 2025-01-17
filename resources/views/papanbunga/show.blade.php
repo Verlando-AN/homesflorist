@@ -2,9 +2,15 @@
 
 @section('title', 'Detail Papan Bunga')
 
+@push('styles') 
+    <!-- Menambahkan CSS Eksternal -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+          integrity="sha384-TN2N27yshwE6P2IHpCsMa9bQgFBdT5w+Zn/8LW4G65w9I9m/Vs9r3YO6UyCQc/x8" 
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+@endpush
+
 @section('content')
-
-
 <div class="container mt-5">
     <div class="row g-4 align-items-start">
         <div class="col-md-6">
@@ -53,7 +59,6 @@
                     <h1 class="card-title text-dark mb-3">{{ $papanBunga->nama }}</h1>
                     <h2 class="price mb-3">Rp {{ number_format($papanBunga->harga, 0, ',', '.') }}</h2>
 
-                   
                     <hr>
                     <p class="mb-4"><strong>Deskripsi:</strong> {{ $papanBunga->deskripsi ?? 'Deskripsi tidak tersedia' }}</p>
                     <div class="d-grid gap-3">
@@ -71,13 +76,6 @@
 </div>
 
 <style>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
-      integrity="sha384-TN2N27yshwE6P2IHpCsMa9bQgFBdT5w+Zn/8LW4G65w9I9m/Vs9r3YO6UyCQc/x8" 
-      crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-
     .product-image {
         max-height: 400px;
         object-fit: cover;
