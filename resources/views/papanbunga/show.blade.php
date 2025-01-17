@@ -2,15 +2,6 @@
 
 @section('title', 'Detail Papan Bunga')
 
-@push('styles') 
-    <!-- Menambahkan CSS Eksternal -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
-          integrity="sha384-TN2N27yshwE6P2IHpCsMa9bQgFBdT5w+Zn/8LW4G65w9I9m/Vs9r3YO6UyCQc/x8" 
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<link rel="stylesheet" href="css/bootstrap.min.css">
-@endpush
-
 @section('content')
 <div class="container mt-5">
     <div class="row g-4 align-items-start">
@@ -60,6 +51,7 @@
                     <h1 class="card-title text-dark mb-3">{{ $papanBunga->nama }}</h1>
                     <h2 class="price mb-3">Rp {{ number_format($papanBunga->harga, 0, ',', '.') }}</h2>
 
+                   
                     <hr>
                     <p class="mb-4"><strong>Deskripsi:</strong> {{ $papanBunga->deskripsi ?? 'Deskripsi tidak tersedia' }}</p>
                     <div class="d-grid gap-3">
@@ -76,5 +68,34 @@
     </div>
 </div>
 
-
+<style>
+    .product-image {
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+    .price {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #28a745;
+    }
+    .btn-success {
+        background-color: #28a745;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+    .btn-success:hover {
+        background-color: #218838;
+    }
+    .btn-outline-secondary {
+        transition: all 0.3s ease;
+    }
+    .btn-outline-secondary:hover {
+        background-color: #e9ecef;
+        color: #000;
+    }
+    hr {
+        border-top: 1px solid #e9ecef;
+    }
+</style>
 @endsection
